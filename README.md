@@ -26,4 +26,10 @@ Set `selarUrl` in `dist/course-config.js` to the actual HTTPS Selar product URL.
 
 Set the regular `price`, optional `discountPrice`, and a fixed `discountEndsAt` ISO timestamp with timezone. A timed offer only appears when a valid Selar URL, valid lower discount price, and future deadline are configured. It expires without resetting and returns to the regular displayed price. Configure the matching price and deadline on Selar as well: this page does not change Selar pricing or enforce its discount. The page copy remains a proposed draft; confirm curriculum, instructor biography, and other claims with the client before launch. Review notes have been removed from visitor-facing sales copy.
 
-Client feedback has six screenshot slots, shared between the evidence filter and the dedicated feedback grid. Add each image to the corresponding `feedback-01` through `feedback-06` entry in `dist/gallery-data.js`.
+Section 01 contains payments, invoices, and six client feedback screenshot slots. Use the Client feedback filter to view feedback together. Add each image to the corresponding `feedback-01` through `feedback-06` entry in `dist/gallery-data.js`.
+
+## Accessibility
+
+Aim for WCAG 2.2 AA. Body text uses 1.125rem (18px at default settings), supporting text is at least 0.875rem, and controls have 44px minimum touch targets. Preserve the skip link, visible focus, native dialog/accordion behavior, reduced-motion settings, and responsive navigation.
+
+Before publishing, verify keyboard-only navigation, screen-reader labels/dialog announcements, 200% text resizing, 400% browser zoom, and reflow at 320 CSS pixels. Check text-spacing overrides and contrast on any new colour combinations. Add accurate alt text and a text equivalent in each image entry's `description` for meaningful screenshot text, with permission and private information removed. The viewer displays this description for supplied images. Image placeholders are not client evidence. These implementation changes alone do not establish full WCAG conformance.

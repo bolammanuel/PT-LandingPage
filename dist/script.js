@@ -35,7 +35,9 @@ function makeCard(item, collection, compact = false) {
   button.setAttribute('aria-label',`View ${item.title}${item.src ? '' : ' — image placeholder'}`);
   button.setAttribute('aria-haspopup','dialog');
   const caption = element('div','evidence-card-caption');
-  caption.append(element('span','',item.title),element('span','','↗'));
+  const arrow = element('span','','↗');
+  arrow.setAttribute('aria-hidden','true');
+  caption.append(element('span','',item.title),arrow);
   button.append(visual(item),caption);
   button.addEventListener('click', () => openViewer(item,collection));
   return button;
@@ -48,7 +50,10 @@ function renderResults(filter = 'all') {
 function renderViewer() {
   const item = currentItems[currentIndex];
   document.querySelector('#viewer-stage').replaceChildren(visual(item,true));
-  document.querySelector('#evidence-title').textContent = item.src ? item.title : 'Image coming soon';
+  document.querySelector('#evidence-title').textContent = item.title;
+  const description = document.querySelector('#evidence-description');
+  description.textContent = item.src ? item.description || '' : '';
+  description.hidden = !description.textContent;
   document.querySelector('#evidence-count').textContent = `${String(currentIndex+1).padStart(2,'0')} / ${String(currentItems.length).padStart(2,'0')}`;
   document.querySelector('#viewer-prev').disabled = currentItems.length < 2;
   document.querySelector('#viewer-next').disabled = currentItems.length < 2;
@@ -88,8 +93,6 @@ new MutationObserver(() => {
 renderResults();
 const heroItems = evidence.filter(item => item.group === 'results').slice(0,3);
 document.querySelector('#hero-proof').replaceChildren(...heroItems.map(item => makeCard(item,heroItems,true)));
-const stories = evidence.filter(item => item.category === 'feedback');
-document.querySelector('#story-grid').replaceChildren(...stories.map(item => makeCard(item,stories)));
 
 // Purchase buttons become direct Selar links when the real product URL is supplied.
 const course = window.PT_COURSE || {};
@@ -137,3 +140,50 @@ function updateOffer() {
 }
 updateOffer();
 const offerInterval = setInterval(() => { if (!updateOffer()) clearInterval(offerInterval); },1000);
+
+// Show the shortcut once the visitor has scrolled beyond the opening content.
+const backToTop = document.querySelector('#back-to-top');
+function updateBackToTop() {
+  backToTop.hidden = window.scrollY < 400;
+}
+window.addEventListener('scroll', updateBackToTop, { passive: true });
+updateBackToTop();
+backToTop.addEventListener('click', () => {
+  const homeLink = document.querySelector('.nav .wordmark');
+  homeLink.focus({ preventScroll: true });
+  window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+});
+
+// A disclosure menu keeps ordinary navigation links keyboard accessible.
+const menuToggle = document.querySelector('.menu-toggle');
+const mainNavigation = document.querySelector('#main-navigation');
+const mobileNavigation = matchMedia('(max-width: 60rem)');
+function setMenuOpen(open, restoreFocus = false) {
+  menuToggle.setAttribute('aria-expanded', String(open));
+  menuToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+  mainNavigation.hidden = mobileNavigation.matches && !open;
+  if (restoreFocus) menuToggle.focus();
+}
+function updateNavigation() {
+  menuToggle.hidden = !mobileNavigation.matches;
+  setMenuOpen(false);
+}
+menuToggle.addEventListener('click', () => setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true'));
+mainNavigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+  if (!mobileNavigation.matches) return;
+  const target = document.querySelector(link.getAttribute('href'));
+  setMenuOpen(false);
+  if (programmeDialog.open || viewer.open) return;
+  if (target) {
+    target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+  }
+}));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') setMenuOpen(false, true);
+});
+document.addEventListener('click', event => {
+  if (menuToggle.getAttribute('aria-expanded') === 'true' && !event.target.closest('.nav')) setMenuOpen(false);
+});
+mobileNavigation.addEventListener('change', updateNavigation);
+updateNavigation();
