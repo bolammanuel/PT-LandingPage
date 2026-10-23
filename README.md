@@ -1,6 +1,6 @@
 # PT Landingpage
 
-An early responsive design concept for a social media training sales page. All programme copy is provisional. The brand name is Precious Tega. Contact: +234 811 417 0437.
+An early responsive design concept for a social media training sales page. All programme copy is provisional. The brand name is Precious Tega.
 
 ## Preview
 
