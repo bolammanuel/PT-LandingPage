@@ -14,7 +14,7 @@ function placeholder(item) {
   const frame = element('div', `proof-art proof-art-${item.style}`);
   frame.setAttribute('aria-hidden', 'true');
   const icons = { payment:'↗', invoice:'≡', retainer:'↻', chat:'“', photo:'✳' };
-  frame.append(element('span','proof-art-label',item.label),element('span','proof-art-icon',icons[item.style]),element('span','proof-art-slot',item.style === 'photo' ? 'Your photo goes here' : 'Your screenshot goes here'),element('span','proof-art-badge','IMAGE PLACEHOLDER'));
+  frame.append(element('span','proof-art-icon',icons[item.style]),element('span','proof-art-slot','Image coming soon'));
   return frame;
 }
 function visual(item, fullSize = false) {
@@ -48,11 +48,8 @@ function renderResults(filter = 'all') {
 function renderViewer() {
   const item = currentItems[currentIndex];
   document.querySelector('#viewer-stage').replaceChildren(visual(item,true));
-  document.querySelector('#evidence-title').textContent = item.title;
-  document.querySelector('#evidence-category').textContent = item.label;
-  document.querySelector('#evidence-description').textContent = item.description;
+  document.querySelector('#evidence-title').textContent = item.src ? item.title : 'Image coming soon';
   document.querySelector('#evidence-count').textContent = `${String(currentIndex+1).padStart(2,'0')} / ${String(currentItems.length).padStart(2,'0')}`;
-  document.querySelector('#viewer-placeholder-note').hidden = Boolean(item.src);
   document.querySelector('#viewer-prev').disabled = currentItems.length < 2;
   document.querySelector('#viewer-next').disabled = currentItems.length < 2;
 }
@@ -91,7 +88,7 @@ new MutationObserver(() => {
 renderResults();
 const heroItems = evidence.filter(item => item.group === 'results').slice(0,3);
 document.querySelector('#hero-proof').replaceChildren(...heroItems.map(item => makeCard(item,heroItems,true)));
-const stories = evidence.filter(item => item.group === 'stories');
+const stories = evidence.filter(item => item.category === 'feedback');
 document.querySelector('#story-grid').replaceChildren(...stories.map(item => makeCard(item,stories)));
 
 // Purchase buttons become direct Selar links when the real product URL is supplied.
