@@ -33,3 +33,9 @@ Use real professional/social profiles and relevant partner links to help discove
 ## Future edits
 
 Keep the title, description, visible course content, JSON-LD, canonical, social URLs, and sitemap consistent. Run `python3 scripts/refresh-assets.py` whenever an asset changes, followed by `git diff --check`. No account credentials or verification tokens are included.
+
+## Social link previews
+
+Open Graph and Twitter Card tags are included in the initial HTML, with Precious Tega's name first, a course description, and a 1200 × 630 branded PNG at `/assets/precious-tega-social-preview.png`. Deploy both the HTML and image. Confirm the image URL returns HTTP 200 without a login or crawler block.
+
+WhatsApp, Telegram, and other clients control their preview layout and may cache previous previews; image, title, or description display can vary by app and settings. Check a newly shared root URL after deployment. If a preview is stale, refresh it with the platform's supported preview/debug tools where available. Local metadata checks do not verify live in-app previews.
