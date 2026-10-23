@@ -33,3 +33,7 @@ Section 01 contains payments, invoices, and six client feedback screenshot slots
 Aim for WCAG 2.2 AA. Body text uses 1.125rem (18px at default settings), supporting text is at least 0.875rem, and controls have 44px minimum touch targets. Preserve the skip link, visible focus, native dialog/accordion behavior, reduced-motion settings, and responsive navigation.
 
 Before publishing, verify keyboard-only navigation, screen-reader labels/dialog announcements, 200% text resizing, 400% browser zoom, and reflow at 320 CSS pixels. Check text-spacing overrides and contrast on any new colour combinations. Add accurate alt text and a text equivalent in each image entry's `description` for meaningful screenshot text, with permission and private information removed. The viewer displays this description for supplied images. Image placeholders are not client evidence. These implementation changes alone do not establish full WCAG conformance.
+
+## SEO and deployment URL
+
+The canonical homepage is `https://precioustega.suavedigitals.com/`. Deployment now targets the subdomain document root. See `SEO-LAUNCH.md` for the root homepage deployment, old `/site/` redirects, Search Console submission, and remaining content requirements. WordPress has been removed; `dist/.htaccess` serves the static homepage and `dist/robots.txt` permits crawling. Metadata and course structured data describe existing course content; rankings and rich results are not guaranteed. Run `python3 scripts/refresh-assets.py` after changing CSS, JavaScript, or the favicon.

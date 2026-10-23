@@ -1,0 +1,9 @@
+# Serve the static homepage at the subdomain root.
+DirectoryIndex index.html
+
+RewriteEngine On
+
+# Consolidate old landing-page URLs at the canonical homepage.
+RewriteRule ^site(?:/index\.html)?/?$ https://precioustega.suavedigitals.com/ [R=301,L]
+RewriteCond %{THE_REQUEST} \s/+index\.html(?:[?\s]) [NC]
+RewriteRule ^index\.html$ https://precioustega.suavedigitals.com/ [R=301,L]
