@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home2/suavedig/public_html/precioustega.suavedigitals.com/site
+    - /bin/mkdir -p "$DEPLOYPATH"
+    - /bin/cp -R dist/. "$DEPLOYPATH/"
