@@ -158,10 +158,17 @@ backToTop.addEventListener('click', () => {
 const menuToggle = document.querySelector('.menu-toggle');
 const mainNavigation = document.querySelector('#main-navigation');
 const mobileNavigation = matchMedia('(max-width: 60rem)');
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+mainNavigation.setAttribute('data-collapsible', '');
 function setMenuOpen(open, restoreFocus = false) {
-  menuToggle.setAttribute('aria-expanded', String(open));
-  menuToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
-  mainNavigation.hidden = mobileNavigation.matches && !open;
+  const expanded = mobileNavigation.matches && open;
+  const collapsed = mobileNavigation.matches && !expanded;
+  menuToggle.setAttribute('aria-expanded', String(expanded));
+  menuToggle.setAttribute('aria-label', expanded ? 'Close navigation' : 'Open navigation');
+  mainNavigation.classList.toggle('is-open', expanded);
+  mainNavigation.inert = collapsed;
+  if (collapsed) mainNavigation.setAttribute('aria-hidden', 'true');
+  else mainNavigation.removeAttribute('aria-hidden');
   if (restoreFocus) menuToggle.focus();
 }
 function updateNavigation() {
@@ -169,15 +176,21 @@ function updateNavigation() {
   setMenuOpen(false);
 }
 menuToggle.addEventListener('click', () => setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true'));
-mainNavigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+mainNavigation.querySelectorAll('a').forEach(link => link.addEventListener('click', async event => {
   if (!mobileNavigation.matches) return;
-  const target = document.querySelector(link.getAttribute('href'));
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
   setMenuOpen(false);
-  if (programmeDialog.open || viewer.open) return;
-  if (target) {
-    target.setAttribute('tabindex', '-1');
-    target.focus({ preventScroll: true });
-  }
+  if (event.defaultPrevented || programmeDialog.open || viewer.open || link.hasAttribute('data-purchase')) return;
+  const href = link.getAttribute('href');
+  const target = href.startsWith('#') && document.getElementById(href.slice(1));
+  if (!target) return;
+  event.preventDefault();
+  // Finish collapsing before scrolling so the section lands at the right position.
+  await Promise.allSettled(mainNavigation.getAnimations().map(animation => animation.finished));
+  target.setAttribute('tabindex', '-1');
+  target.focus({ preventScroll: true });
+  if (location.hash !== href) history.pushState(null, '', href);
+  target.scrollIntoView({ behavior: reducedMotion.matches ? 'instant' : 'smooth' });
 }));
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') setMenuOpen(false, true);
@@ -193,7 +206,6 @@ const ribbon = document.querySelector('.ribbon');
 const ribbonViewport = ribbon.querySelector('.ribbon-viewport');
 const ribbonTrack = ribbon.querySelector('.ribbon-track');
 const ribbonGroup = ribbon.querySelector('.ribbon-group');
-const ribbonToggle = ribbon.querySelector('.ribbon-toggle');
 const ribbonCopy = ribbonGroup.cloneNode(true);
 ribbonCopy.setAttribute('aria-hidden', 'true');
 ribbonTrack.append(ribbonCopy);
@@ -205,19 +217,31 @@ function updateRibbon() {
   const scrolling = overflows && !reducedRibbonMotion.matches;
   ribbon.classList.toggle('is-scrolling', scrolling);
   ribbonViewport.tabIndex = overflows ? 0 : -1;
-  ribbonToggle.hidden = !scrolling;
 }
 function setRibbonPaused(paused) {
   ribbon.classList.toggle('is-paused', paused);
-  ribbonToggle.setAttribute('aria-pressed', String(paused));
-  ribbonToggle.setAttribute('aria-label', `${paused ? 'Resume' : 'Pause'} programme themes scrolling`);
   ribbonViewport.scrollLeft = 0;
 }
-ribbonToggle.addEventListener('click', () => setRibbonPaused(!ribbon.classList.contains('is-paused')));
 ribbonViewport.addEventListener('focus', () => setRibbonPaused(true));
-ribbonViewport.addEventListener('pointerdown', () => setRibbonPaused(true));
+ribbonViewport.addEventListener('blur', () => setRibbonPaused(false));
 const ribbonResizeObserver = new ResizeObserver(updateRibbon);
 ribbonResizeObserver.observe(ribbon);
 ribbonResizeObserver.observe(ribbonGroup);
 reducedRibbonMotion.addEventListener('change', updateRibbon);
 updateRibbon();
+
+// Reveal each section once, keeping content visible without JavaScript or motion.
+if ('IntersectionObserver' in window && !reducedMotion.matches) {
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      sectionObserver.unobserve(entry.target);
+    });
+  }, { rootMargin: '0px 0px -32px 0px' });
+  document.querySelectorAll('main > .section, main > .next').forEach(section => {
+    if (section.getBoundingClientRect().top < window.innerHeight) return;
+    section.classList.add('reveal-on-scroll');
+    sectionObserver.observe(section);
+  });
+}

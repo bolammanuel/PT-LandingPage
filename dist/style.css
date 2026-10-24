@@ -102,6 +102,7 @@ footer{flex-wrap:wrap;padding-bottom:90px}
 .menu-toggle[aria-expanded=true] .menu-cross{display:block}
 .nav{min-height:96px;flex-wrap:nowrap;gap:24px}
 .nav nav{gap:clamp(16px,2vw,32px);align-items:center}
+.nav-links{display:flex;align-items:center;gap:inherit}
 .nav nav .mobile-purchase{display:none}
 .approach,.mentor,.faq{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px)}
 .section{padding-top:clamp(48px,6vw,96px);padding-bottom:clamp(48px,6vw,96px)}
@@ -112,9 +113,12 @@ footer{flex-wrap:wrap;padding-bottom:90px}
 .story-grid .proof-art,.story-grid .evidence-image{height:clamp(16rem,24vw,23rem)}
 @media(max-width:75rem){.nav{gap:16px}.nav nav{gap:16px}.nav>.button{gap:12px}.hero-actions{gap:16px}.hero-actions .button{gap:16px}}
 @media(max-width:60rem){
-  .nav{position:relative;flex-wrap:wrap;justify-content:space-between;min-height:84px;padding-top:16px;padding-bottom:16px}
+  .nav{position:relative;flex-wrap:wrap;justify-content:space-between;row-gap:0;min-height:84px;padding-top:16px;padding-bottom:16px}
   .nav>.button{display:none}
-  .nav nav{order:3;flex:1 0 100%;display:flex;flex-direction:column;align-items:stretch;gap:4px;padding:16px 0 4px;border-top:1px solid var(--line)}
+  .nav nav{order:3;flex:1 0 100%;display:grid;grid-template-rows:1fr;align-items:stretch;gap:0;margin-top:16px;padding:16px 0 4px;border-top:1px solid var(--line)}
+  .nav-links{min-height:0;overflow:hidden;flex-direction:column;align-items:stretch;gap:4px}
+  .nav nav[data-collapsible]{grid-template-rows:0fr;visibility:hidden;opacity:0;transform:translateY(-8px);margin-top:0;padding-top:0;padding-bottom:0;border-top-width:0;pointer-events:none;transition:grid-template-rows .3s ease,opacity .22s ease,transform .3s ease,margin-top .3s ease,padding .3s ease,border-top-width .3s ease,visibility 0s .3s}
+  .nav nav[data-collapsible].is-open{grid-template-rows:1fr;visibility:visible;opacity:1;transform:none;margin-top:16px;padding-top:16px;padding-bottom:4px;border-top-width:1px;pointer-events:auto;transition-delay:0s}
   .nav nav a{padding:10px 12px}
   .nav nav .mobile-purchase{display:flex;justify-content:space-between;margin-top:8px;background:#ae3566;border-color:#ae3566;color:white}
   .hero{grid-template-columns:minmax(0,1fr);gap:40px}
@@ -165,7 +169,7 @@ footer{flex-wrap:wrap;padding-bottom:90px}
 @media(max-width:23rem){.story-grid{grid-template-columns:minmax(0,1fr)}.story-grid .proof-art,.story-grid .evidence-image{height:18rem}.menu-toggle{padding:8px;gap:4px}.hero-proof-stack{height:29rem}.evidence-topline{font-size:.875rem;letter-spacing:.06em}}
 
 /* Keep programme themes on one line, with motion only when the row overflows. */
-.ribbon{--ribbon-gap:clamp(24px,3vw,38px);display:flex;align-items:center;gap:12px;min-height:68px;padding:12px 16px;background:var(--plum);color:#fff4e7;font-size:.875rem;line-height:1.5;letter-spacing:1.6px}
+.ribbon{--ribbon-gap:clamp(24px,3vw,38px);display:flex;align-items:center;min-height:68px;padding:12px 16px;background:var(--plum);color:#fff4e7;font-size:.875rem;line-height:1.5;letter-spacing:1.6px}
 .ribbon-viewport{flex:1;min-width:0;overflow-x:auto;scrollbar-width:thin;scrollbar-color:#ef8faf transparent}
 .ribbon-viewport:focus-visible{outline-color:var(--cream);outline-offset:-3px;box-shadow:none}
 .ribbon-track{display:flex;width:max-content;margin-inline:auto}
@@ -173,13 +177,18 @@ footer{flex-wrap:wrap;padding-bottom:90px}
 .ribbon-group span{flex-shrink:0;white-space:nowrap}
 .ribbon-group i{flex-shrink:0;font-style:normal;color:#ef8faf;font-size:1.5rem;line-height:1}
 .ribbon-group[aria-hidden=true]{display:none}
-.ribbon-toggle{display:grid;place-items:center;flex:0 0 44px;width:44px;height:44px;padding:0;border:1px solid #ef8faf80;border-radius:50%;background:transparent;color:inherit}
-.ribbon-toggle:hover{background:#60345a}
-.ribbon-toggle:focus-visible{outline-color:var(--cream);box-shadow:none}
-.ribbon-play,.ribbon.is-paused .ribbon-pause{display:none}
-.ribbon.is-paused .ribbon-play{display:block}
 .ribbon.is-scrolling:not(.is-paused) .ribbon-viewport{overflow-x:hidden;mask-image:linear-gradient(90deg,transparent,#000 12px,#000 calc(100% - 12px),transparent)}
 .ribbon.is-scrolling:not(.is-paused) .ribbon-track{margin-inline:0;animation:ribbon-scroll 34s linear infinite}
 .ribbon.is-scrolling:not(.is-paused) .ribbon-group[aria-hidden=true]{display:flex}
 @keyframes ribbon-scroll{to{transform:translateX(-50%)}}
 @media(hover:hover){.ribbon-viewport:hover .ribbon-track{animation-play-state:paused}}
+
+/* Light entrance motion and one-time section reveals. */
+@keyframes page-enter{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:no-preference){
+  .nav{animation:page-enter .45s ease-out both}
+  .hero-copy{animation:page-enter .65s ease-out .08s both}
+  .hero-evidence{animation:page-enter .7s ease-out .18s both}
+  .reveal-on-scroll{opacity:0;transform:translateY(20px);transition:opacity .6s ease-out,transform .6s ease-out}
+  .reveal-on-scroll.is-visible,.reveal-on-scroll:focus-within{opacity:1;transform:none}
+}
