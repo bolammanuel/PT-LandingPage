@@ -12,6 +12,8 @@ Open `dist/index.html`, or serve `dist` with a static web server. No build or de
 - `dist/style.css`: palette, typography, layout, and mobile styles.
 - `dist/script.js`: programme details dialog.
 
+The design uses black backgrounds, charcoal panels, white text, and dark pink accents. Shared colour tokens are defined at the start of `dist/style.css`. The closing-section star sits behind the content and is hidden at mobile/tablet sizes.
+
 Before launch, confirm the proposed curriculum; supply the approved headline, programme name, audience, biography, portrait, verified testimonials, price, dates, delivery details, registration link, contact information, and applicable policies. The draft deliberately does not collect visitor information or take payments.
 
 ## Evidence galleries

@@ -36,6 +36,8 @@ Keep the title, description, visible course content, JSON-LD, canonical, social 
 
 ## Social link previews
 
-Open Graph and Twitter Card tags are included in the initial HTML, with Precious Tega's name first, a course description, and a 1200 × 630 branded PNG at `/assets/precious-tega-social-preview.png`. Deploy both the HTML and image. Confirm the image URL returns HTTP 200 without a login or crawler block.
+Open Graph and Twitter Card tags are included in the initial HTML, with Precious Tega's name first, a concise course description, and a 1200 × 630 black, white, and dark pink branded PNG at `/assets/precious-tega-social-preview-dark.png`. Deploy both the HTML and image. The new filename distinguishes it from the previous cream graphic, which remains available for previously shared links. Confirm the new image URL returns HTTP 200 with an image content type, without a login or crawler block.
+
+To rebuild the graphic on macOS, run `swift -module-cache-path /tmp/pt-swift-module-cache scripts/build-social-preview.swift`. The published website needs no Swift installation or build step.
 
 WhatsApp, Telegram, and other clients control their preview layout and may cache previous previews; image, title, or description display can vary by app and settings. Check a newly shared root URL after deployment. If a preview is stale, refresh it with the platform's supported preview/debug tools where available. Local metadata checks do not verify live in-app previews.
