@@ -187,3 +187,37 @@ document.addEventListener('click', event => {
 });
 mobileNavigation.addEventListener('change', updateNavigation);
 updateNavigation();
+
+// Scroll the themes only when they cannot fit on one line.
+const ribbon = document.querySelector('.ribbon');
+const ribbonViewport = ribbon.querySelector('.ribbon-viewport');
+const ribbonTrack = ribbon.querySelector('.ribbon-track');
+const ribbonGroup = ribbon.querySelector('.ribbon-group');
+const ribbonToggle = ribbon.querySelector('.ribbon-toggle');
+const ribbonCopy = ribbonGroup.cloneNode(true);
+ribbonCopy.setAttribute('aria-hidden', 'true');
+ribbonTrack.append(ribbonCopy);
+const reducedRibbonMotion = matchMedia('(prefers-reduced-motion: reduce)');
+function updateRibbon() {
+  const styles = getComputedStyle(ribbon);
+  const availableWidth = ribbon.clientWidth - parseFloat(styles.paddingLeft) - parseFloat(styles.paddingRight);
+  const overflows = ribbonGroup.offsetWidth > availableWidth;
+  const scrolling = overflows && !reducedRibbonMotion.matches;
+  ribbon.classList.toggle('is-scrolling', scrolling);
+  ribbonViewport.tabIndex = overflows ? 0 : -1;
+  ribbonToggle.hidden = !scrolling;
+}
+function setRibbonPaused(paused) {
+  ribbon.classList.toggle('is-paused', paused);
+  ribbonToggle.setAttribute('aria-pressed', String(paused));
+  ribbonToggle.setAttribute('aria-label', `${paused ? 'Resume' : 'Pause'} programme themes scrolling`);
+  ribbonViewport.scrollLeft = 0;
+}
+ribbonToggle.addEventListener('click', () => setRibbonPaused(!ribbon.classList.contains('is-paused')));
+ribbonViewport.addEventListener('focus', () => setRibbonPaused(true));
+ribbonViewport.addEventListener('pointerdown', () => setRibbonPaused(true));
+const ribbonResizeObserver = new ResizeObserver(updateRibbon);
+ribbonResizeObserver.observe(ribbon);
+ribbonResizeObserver.observe(ribbonGroup);
+reducedRibbonMotion.addEventListener('change', updateRibbon);
+updateRibbon();
