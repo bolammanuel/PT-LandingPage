@@ -1,41 +1,76 @@
-# PT Landingpage
+# Precious Tega — Original Template with Client Content
 
-An early responsive design concept for a social media training sales page. All programme copy is provisional. The brand name is Precious Tega.
+The active page uses the original pre-PDF template from commit `8e5670d`, populated with the client's **The Complete Social Media Management Blueprint** copy. Its original section order, two-column hero, overlapping proof images, evidence area with dedicated before/after comparisons, explanation columns, lesson accordion, instructor layout, four completed disclosures, and closing course-offer card are retained.
 
-## Preview
+The original template’s appearance is retained, with source cleanup for the completed portrait. The appended rules support already-approved controls: equal-sized wordmarks, accessible vector ornaments, accessible pause/resume on the moving ribbon itself, keyboard-visible/reduced-motion content, the scrolling enrolment bar, and supplied media. The main section order remains the original template. The requested comparison subsection and wider closing offer are scoped changes within those sections; the active version does not use the separate thirteen-section PDF layout.
 
-Open `dist/index.html`, or serve `dist` with a static web server. No build or dependencies required. Google Fonts are optional; system fallbacks are included.
+## Preserved versions
 
-## Editing
+- [Active original template with PDF content](dist/index.html).
+- [Previous thirteen-section PDF-layout version](../Versions/precious-tega-pdf-layout/dist/index.html), preserved with its complete source and images.
+- [Untouched pre-PDF template ZIP](../Others/precious-tega-template-before-client-pdf-8e5670d.zip).
+- [Previous PDF-layout ZIP](../Others/precious-tega-client-blueprint-2026-10-25.zip).
 
-- `dist/index.html`: copy, programme sections, FAQs, and links.
-- `dist/style.css`: palette, typography, layout, and mobile styles.
-- `dist/script.js`: programme details dialog.
+`../Versions/` and `../Others/` sit outside the deployment directory. The cPanel configuration publishes only `dist/`.
 
-The design uses black backgrounds, charcoal panels, white text, and dark pink accents. Shared colour tokens are defined at the start of `dist/style.css`. The closing-section star sits behind the content and is hidden at mobile/tablet sizes.
+## Preview and edit
 
-Before launch, confirm the proposed curriculum; supply the approved headline, programme name, audience, biography, portrait, verified testimonials, price, dates, delivery details, registration link, contact information, and applicable policies. The draft deliberately does not collect visitor information or take payments.
+Open `dist/index.html`, or run:
 
-## Evidence galleries
+```bash
+python3 -m http.server 8000 --directory dist
+```
 
-Edit `dist/gallery-data.js` to replace the image placeholders. Put approved images in `dist/assets/` and set each item's `src` to its relative path, e.g. `assets/payment-01.jpg`. Update its `title`, `description`, and `alt` with approved context. Images display in full using contain sizing; clicking opens a modal. Filters apply to the results gallery, and the viewer browses the selected collection, wrapping at both ends. Arrow keys navigate; Escape closes the native dialog.
+There is no dependency installation or build step. The previous PDF-layout version can be opened independently at its linked `dist/index.html`, or served with a separate static server.
 
-Only add evidence belonging to this client; reference-site screenshots are not presented as her results. Final copy and any financial claims still require her confirmed details.
+- `dist/index.html`: original template sections filled with approved copy.
+- `dist/style.css`: original stylesheet and previously approved control fixes.
+- `dist/script.js`: supplied hero images, full-size image viewer, Selar links, confirmed pricing, navigation, animation, and pricing bar.
+- `dist/gallery-data.js`: only the six supplied before/after screenshots; no dummy evidence entries or unfilled media slots.
+- `dist/course-config.js`: confirmed ₦20,000 price and the pending Selar URL.
 
-## Selar checkout and optional offer
+## Content placement
 
-Set `selarUrl` in `dist/course-config.js` to the actual HTTPS Selar product URL. All purchase buttons will open that listing. Until configured, they open the registration message.
+The PDF supplies the wording, and the original template supplies the presentation.
 
-Set the regular `price`, optional `discountPrice`, and a fixed `discountEndsAt` ISO timestamp with timezone. A timed offer only appears when a valid Selar URL, valid lower discount price, and future deadline are configured. It expires without resetting and returns to the regular displayed price. Configure the matching price and deadline on Selar as well: this page does not change Selar pricing or enforce its discount. The page copy remains a proposed draft; confirm curriculum, instructor biography, and other claims with the client before launch. Review notes have been removed from visitor-facing sales copy.
+| Original template area | PDF content |
+| --- | --- |
+| Two-column hero | Course name, supplied hook, introduction, access CTA, and preview images |
+| Evidence section | A dedicated before/after page-growth comparison and the supplied evidence copy |
+| Explanation columns | The supplied “You may be making this harder than it needs to be” copy |
+| Existing course accordion | All eleven lesson titles and descriptions, plus the supplied course CTA |
+| Instructor columns | Precious Tega's complete supplied biography |
+| Four existing disclosures | Audience, three templates, mentorship/community, and certificate |
+| Original closing offer | Final word, complete inclusions, ₦20,000 price, and enrolment CTAs |
 
-Section 01 contains payments, invoices, and six client feedback screenshot slots. Use the Client feedback filter to view feedback together. Add each image to the corresponding `feedback-01` through `feedback-06` entry in `dist/gallery-data.js`.
+Bracketed production notes are excluded from the page. The supplied Precious Tega portrait is displayed in the original instructor area. Empty course, template, community and certificate preview slots have been removed. The three template bonuses, mentorship and certificate descriptions remain because they are approved PDF content.
 
-## Accessibility
+## Screenshots and evidence
 
-Aim for WCAG 2.2 AA. Body text uses 1.125rem (18px at default settings), supporting text is at least 0.875rem, and controls have 44px minimum touch targets. Preserve the skip link, visible focus, native dialog/accordion behavior, reduced-motion settings, and responsive navigation.
+All six supplied screenshots are copied without edits into `dist/assets/`. They appear as three permanently visible before/after pairs, with account headings, explicit Before/After labels, displayed follower counts, alt text, text descriptions, and intrinsic dimensions. Each pair sits side by side on desktop and stacks vertically on phones; there is no horizontal image carousel. The original hero's three overlapping proof cards show the three after screenshots. Clicking a comparison image opens the full-size viewer for that pair; arrow keys and buttons switch between its before and after images, and Escape closes it. The image links also open the original assets when JavaScript is unavailable.
 
-Before publishing, verify keyboard-only navigation, screen-reader labels/dialog announcements, 200% text resizing, 400% browser zoom, and reflow at 320 CSS pixels. Check text-spacing overrides and contrast on any new colour combinations. Add accurate alt text and a text equivalent in each image entry's `description` for meaningful screenshot text, with permission and private information removed. The viewer displays this description for supplied images. Image placeholders are not client evidence. These implementation changes alone do not establish full WCAG conformance.
+The observed pairs are Helejené Homes, Jeleosinmi, and Precious Tega's own Instagram page. Captions use the displayed counts without inventing dates, percentages, or revenue results. The before/after comparisons are the only evidence view. The empty Client feedback view and unnecessary category switches have been removed. Unsupplied evidence entries and placeholder-rendering logic are removed from the active site; earlier scaffolding remains recoverable from the preserved versions and the pre-cleanup ZIP.
 
-## SEO and deployment URL
+## Checkout and accessibility
 
-The canonical homepage is `https://precioustega.suavedigitals.com/`. Deployment now targets the subdomain document root. See `SEO-LAUNCH.md` for the root homepage deployment, old `/site/` redirects, Search Console submission, and remaining content requirements. WordPress has been removed; `dist/.htaccess` serves the static homepage and `dist/robots.txt` permits crawling. Metadata and course structured data describe existing course content; rankings and rich results are not guaranteed. Run `python3 scripts/refresh-assets.py` after changing CSS, JavaScript, or the favicon.
+The confirmed price is `20000` in `NGN`. Supply the actual HTTPS Selar product URL in `course-config.js` when available. Until then, all enrolment controls open the official Selar homepage in a new tab. Once `selarUrl` is supplied, that one setting updates every enrolment control. The closing offer card keeps one purchase button. There is no discount, deadline, or hidden countdown in the review build. The unused contact/registration popup has also been removed; all enrolment buttons lead directly to Selar.
+
+Keep the skip link, visible focus, native dialogs and disclosures, focus restoration, keyboard navigation, readable text, 44px controls, and reduced-motion support. The ribbon has no separate Pause button. Clicking the strip, or pressing Enter/Space when it is focused, persistently pauses/resumes motion; hover pause and reduced-motion support remain. Its position remains the same as in the original template. The previously requested bottom pricing bar appears after the hero and yields to the closing course offer and footer. Bottom clearance is reserved only while the bar is visible; footer padding stays compact, with inline clearance for the floating back-to-top control. The closing card is capped at 960px on desktop, with fluid mobile width, and its introductory copy uses a wider reading measure. These implementation details do not establish full WCAG conformance; browser, screen-reader, reflow, and zoom checks are still required before launch.
+
+```bash
+node --check dist/script.js
+node --check dist/gallery-data.js
+node --check dist/course-config.js
+python3 scripts/refresh-assets.py
+git diff --check
+```
+
+## Client review package
+
+`../Others/precious-tega-client-review-2026-10-25.zip` contains only the static website for review. The pre-cleanup source is preserved separately in `../Others/precious-tega-before-client-cleanup-2026-10-25.zip`. The earlier PDF-layout version remains unchanged. The actual Selar product URL is the only intentionally pending destination. Browser and screen-reader verification remain required before production launch.
+
+## VS Code save conflicts
+
+“Failed to save: The content of the file is newer” concerns a stale unsaved editor buffer, rather than a Git merge. Use Compare to preserve intentional unsaved edits. When the saved file is the version to keep, **File: Revert File** reloads the affected editor from disk. Avoid Overwrite on a stale tab. **Git: Discard Changes** is a different operation that can remove the updated page.
+
+See `SEO-LAUNCH.md` for existing cPanel deployment, canonical URL, redirects, and launch checks. Nothing has been deployed by this local content update.

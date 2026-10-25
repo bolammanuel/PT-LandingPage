@@ -8,7 +8,7 @@ let height = 630
 let size = NSSize(width: CGFloat(width), height: CGFloat(height))
 let output = URL(fileURLWithPath: #filePath)
     .deletingLastPathComponent().deletingLastPathComponent()
-    .appendingPathComponent("dist/assets/precious-tega-social-preview-dark.png")
+    .appendingPathComponent("dist/assets/precious-tega-blueprint-preview.png")
 
 func color(_ hex: UInt32) -> NSColor {
     NSColor(srgbRed: CGFloat((hex >> 16) & 255) / 255,
@@ -51,26 +51,18 @@ NSBezierPath(rect: NSRect(origin: .zero, size: size)).fill()
 deepPink.setFill()
 NSBezierPath(rect: NSRect(x: 0, y: CGFloat(height - 4), width: CGFloat(width), height: 4)).fill()
 
-let badge = NSBezierPath(roundedRect: NSRect(x: 552, y: 456, width: 96, height: 96),
-                        xRadius: 22, yRadius: 22)
-surface.setFill()
-badge.fill()
-deepPink.setStroke()
-badge.lineWidth = 1.5
-badge.stroke()
-let monogram = NSMutableAttributedString(attributedString: text("P", font: font("Georgia-Bold", 43), color: white))
-monogram.append(text("T", font: font("Georgia-Bold", 43), color: pink))
-centered(monogram, y: 477)
-
-let name = NSMutableAttributedString(attributedString: text("Precious ", font: font("Georgia", 86), color: white))
-name.append(text("Tega", font: font("Georgia-Italic", 86), color: pink))
-centered(name, y: 314)
-centered(text("Social Media Business Course", font: font("Arial", 34), color: white), y: 250)
+let name = NSMutableAttributedString(attributedString: text("Precious ", font: font("Georgia", 33), color: white))
+name.append(text("Tega", font: font("Georgia-Italic", 33), color: pink))
+centered(name, y: 540)
+centered(text("THE COMPLETE", font: font("Arial-BoldMT", 19), color: pink), y: 462)
+centered(text("Social Media Management", font: font("Georgia", 63), color: white), y: 367)
+centered(text("Blueprint", font: font("Georgia-Italic", 83), color: pink), y: 262)
 
 deepPink.setFill()
-NSBezierPath(rect: NSRect(x: 440, y: 214, width: 320, height: 3)).fill()
-centered(text("Clear offers. Strategic content. Confident client conversations.",
-              font: font("Arial", 23), color: muted), y: 150)
+NSBezierPath(rect: NSRect(x: 440, y: 224, width: 320, height: 3)).fill()
+centered(text("11 core lessons · 3 practical templates · 2 weeks of mentorship",
+              font: font("Arial", 23), color: muted), y: 165)
+centered(text("₦20,000", font: font("Georgia-Bold", 43), color: white), y: 76)
 
 NSGraphicsContext.restoreGraphicsState()
 guard let png = bitmap.representation(using: .png, properties: [:]) else {

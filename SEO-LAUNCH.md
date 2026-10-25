@@ -1,5 +1,7 @@
 # SEO and Root URL Launch
 
+The active version now uses the original pre-PDF template structure with the approved Blueprint copy and six supplied screenshots. The previous PDF-layout version is preserved independently in `../Versions/precious-tega-pdf-layout/`; it is outside the deployment source.
+
 The preferred public URL is `https://precioustega.suavedigitals.com/`.
 `.cpanel.yml` now copies `dist/` into the subdomain document root instead of `/site/`.
 Confirm that cPanel Domains lists `/home2/suavedig/public_html/precioustega.suavedigitals.com` as this subdomain's document root before deploying.
@@ -24,9 +26,9 @@ The deployed `.htaccess` replaces a file of the same name. If hosting-specific d
 
 ## Content and measurement
 
-Initial target: “social media business course”, supported by positioning, service packaging, content strategy, and client communication. Confirm audience and location before adding geographic claims.
+The approved course is “The Complete Social Media Management Blueprint”. The PDF supplies eleven lessons on social media management, content strategy, content calendars, hooks, content creation, video editing, Canva, page growth, analysis, client acquisition, and portfolios/interviews. Keep metadata aligned with that copy; do not add unsupported geographic claims.
 
-Replace placeholders with client-approved photos and genuine feedback. Confirm the curriculum, biography, actual Selar URL, price, duration, access period, and delivery details. Competitor pages often supply these decision-making details; do not invent them or add ratings/reviews to structured data without real evidence.
+The client PDF supplies the curriculum, biography, ₦20,000 price, three templates, two weeks of free mentorship, community access, and completion certificate. The supplied portrait and six approved before/after screenshots are included. Empty feedback and preview slots are removed from the review build. Add the actual Selar product URL when supplied; the buttons currently open Selar. No conditional ₦45,000 comparison or unconfirmed deadline is published. Do not add ratings/reviews to structured data without real evidence.
 
 Use real professional/social profiles and relevant partner links to help discovery. Publish useful, original answers to actual customer questions rather than adding repetitive keywords or bulk pages. Track Search Console impressions, queries, clicks, and indexing after launch; rankings are not guaranteed.
 
@@ -36,7 +38,7 @@ Keep the title, description, visible course content, JSON-LD, canonical, social 
 
 ## Social link previews
 
-Open Graph and Twitter Card tags are included in the initial HTML, with Precious Tega's name first, a concise course description, and a 1200 × 630 black, white, and dark pink branded PNG at `/assets/precious-tega-social-preview-dark.png`. Deploy both the HTML and image. The new filename distinguishes it from the previous cream graphic, which remains available for previously shared links. Confirm the new image URL returns HTTP 200 with an image content type, without a login or crawler block.
+Open Graph and Twitter Card tags are included in the initial HTML, with Precious Tega's name, the complete blueprint course title and description, and a 1200 × 630 black, white, and dark pink branded PNG at `/assets/precious-tega-blueprint-preview.png`. Deploy both the HTML and image. The new filename distinguishes it from the previous cream graphic, which remains available for previously shared links. Confirm the new image URL returns HTTP 200 with an image content type, without a login or crawler block.
 
 To rebuild the graphic on macOS, run `swift -module-cache-path /tmp/pt-swift-module-cache scripts/build-social-preview.swift`. The published website needs no Swift installation or build step.
 

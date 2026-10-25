@@ -6,9 +6,9 @@ This repository contains the Precious Tega course landing page. `dist/` is the e
 
 - `dist/index.html`: page sections, navigation, FAQs, and dialogs.
 - `dist/style.css`: branding, layout, responsive styles, and gallery presentation.
-- `dist/script.js`: galleries, filters, dialogs, checkout links, and countdown behavior.
-- `dist/gallery-data.js`: evidence entries and six client feedback slots.
-- `dist/course-config.js`: Selar URL, pricing, currency, and offer deadline.
+- `dist/script.js`: full-size evidence viewing, Selar links, navigation, motion controls, and the pricing bar.
+- `dist/gallery-data.js`: the six supplied, approved before/after evidence images. Do not add unfilled slots to the client review build.
+- `dist/course-config.js`: Selar URL and the confirmed price/currency.
 - `dist/assets/`: create this directory for approved client images.
 - `.cpanel.yml`: deployment tasks; keep this beside `README.md`.
 
@@ -33,7 +33,7 @@ Keep gallery entries uniquely identified, with descriptive titles and meaningful
 
 ## Testing Guidelines
 
-There is no automated test framework or coverage threshold. Verify desktop and mobile layouts manually. Check gallery filters, all six feedback slots, full-size images, previous/next navigation, arrow keys, Escape dismissal, and focus restoration. Confirm unconfigured checkout shows the registration dialog; when changing offers, check valid checkout links and expired deadlines. Include relevant validation results in the pull request.
+There is no automated test framework or coverage threshold. Verify desktop and mobile layouts manually. Check all three static before/after pairs, full-size images, pair navigation, arrow keys, Escape dismissal, and focus restoration. The client review build must not show empty feedback, unprovided media previews, or dummy evidence. Growth photos must remain in document flow without a horizontal carousel, with visible Before/After labels and responsive side-by-side/stacked layouts. Confirm unconfigured enrolment links open the Selar homepage, configured links all open the supplied Selar product URL, and all displayed prices match the configured confirmed price. There is no unconfigured offer/countdown in the client review build. Include relevant validation results in the pull request.
 
 ## Commit & Pull Request Guidelines
 

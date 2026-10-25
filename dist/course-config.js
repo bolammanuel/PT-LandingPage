@@ -1,8 +1,6 @@
-// Confirm these details with the client before enabling checkout or a timed offer.
+// The client supplied the price; add the Selar product link when it is provided.
 window.PT_COURSE = {
-  selarUrl: null, // Actual https://selar.com/... or https://selar.co/... product link.
-  price: null, // Regular numeric price, e.g. 30000.
-  currency: 'NGN',
-  discountPrice: null, // Must be less than price.
-  discountEndsAt: null // Fixed ISO date with timezone, e.g. YYYY-MM-DDTHH:mm:ss+01:00.
+  selarUrl: null, // Enrolment buttons use https://selar.com/ until the product URL is supplied.
+  price: 20000,
+  currency: 'NGN'
 };
