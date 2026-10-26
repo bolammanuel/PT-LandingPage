@@ -28,6 +28,10 @@ There is no dependency installation or build step. The previous PDF-layout versi
 - `dist/script.js`: supplied hero images, full-size image viewer, Selar links, confirmed pricing, navigation, animation, and pricing bar.
 - `dist/gallery-data.js`: only the six supplied before/after screenshots; no dummy evidence entries or unfilled media slots.
 - `dist/course-config.js`: confirmed ₦20,000 price and the pending Selar URL.
+- `dist/assets/optimized/`: responsive AVIF/WebP images and JPEG fallbacks; full-size originals remain in `dist/assets/`.
+- `dist/assets/fonts/`: the approved fonts served locally, with their licenses.
+
+See [PERFORMANCE.md](PERFORMANCE.md) for measured image reductions, compression/cache settings, and image-maintenance commands. Responsive image delivery preserves the original layout and full-size evidence links. The initial HTML includes all three hero previews; application scripts are deferred.
 
 ## Content placement
 

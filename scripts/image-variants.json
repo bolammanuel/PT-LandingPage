@@ -1,0 +1,275 @@
+{
+  "helejene-homes-before": {
+    "original": "assets/helejene-homes-before.jpg",
+    "originalBytes": 122528,
+    "originalSha256": "37a4113f2d2f07208b8bd874b1d01b81ee2aa713f8b4968e6b716dc66211e775",
+    "width": 1280,
+    "height": 1276,
+    "variants": [
+      {
+        "width": 360,
+        "height": 359,
+        "avif": "assets/optimized/helejene-homes-before-360.51b07c82737f.avif",
+        "avifBytes": 13494,
+        "webp": "assets/optimized/helejene-homes-before-360.642748f392fe.webp",
+        "webpBytes": 16782,
+        "jpg": "assets/optimized/helejene-homes-before-360.0921d8c43985.jpg",
+        "jpgBytes": 27803
+      },
+      {
+        "width": 720,
+        "height": 718,
+        "avif": "assets/optimized/helejene-homes-before-720.dffa33759320.avif",
+        "avifBytes": 33430,
+        "webp": "assets/optimized/helejene-homes-before-720.d9ec8e0d6e83.webp",
+        "webpBytes": 40786,
+        "jpg": "assets/optimized/helejene-homes-before-720.3efe3085805e.jpg",
+        "jpgBytes": 70815
+      },
+      {
+        "width": 1280,
+        "height": 1276,
+        "avif": "assets/optimized/helejene-homes-before-1280.50ec5e4e9abe.avif",
+        "avifBytes": 79837,
+        "webp": "assets/optimized/helejene-homes-before-1280.2b7f4252b0e1.webp",
+        "webpBytes": 82830,
+        "jpg": "assets/optimized/helejene-homes-before-1280.fbcd7bc3d2d6.jpg",
+        "jpgBytes": 141926
+      }
+    ]
+  },
+  "helejene-homes-after": {
+    "original": "assets/helejene-homes-after.png",
+    "originalBytes": 237624,
+    "originalSha256": "991f2700413116a9601a8f303cbfd1de73ba00b0d1b7ddadf00ee539e0bd620d",
+    "width": 1320,
+    "height": 1421,
+    "variants": [
+      {
+        "width": 360,
+        "height": 388,
+        "avif": "assets/optimized/helejene-homes-after-360.bfd06f82ed17.avif",
+        "avifBytes": 15254,
+        "webp": "assets/optimized/helejene-homes-after-360.ca752f3de80f.webp",
+        "webpBytes": 18836,
+        "jpg": "assets/optimized/helejene-homes-after-360.f8c7977dcb58.jpg",
+        "jpgBytes": 30169
+      },
+      {
+        "width": 720,
+        "height": 775,
+        "avif": "assets/optimized/helejene-homes-after-720.a05455009339.avif",
+        "avifBytes": 36480,
+        "webp": "assets/optimized/helejene-homes-after-720.96b4b251d324.webp",
+        "webpBytes": 45332,
+        "jpg": "assets/optimized/helejene-homes-after-720.045997c33d01.jpg",
+        "jpgBytes": 77779
+      },
+      {
+        "width": 1320,
+        "height": 1421,
+        "avif": "assets/optimized/helejene-homes-after-1320.e25fe03402b7.avif",
+        "avifBytes": 81742,
+        "webp": "assets/optimized/helejene-homes-after-1320.74c0dc6a016b.webp",
+        "webpBytes": 89416,
+        "jpg": "assets/optimized/helejene-homes-after-1320.db5eff644982.jpg",
+        "jpgBytes": 187999
+      }
+    ]
+  },
+  "jeleosinmi-before": {
+    "original": "assets/jeleosinmi-before.png",
+    "originalBytes": 165188,
+    "originalSha256": "08f3ae8de76dcf888af050c111b5136372db2527c308559a4f4024d63a0093ef",
+    "width": 1320,
+    "height": 1232,
+    "variants": [
+      {
+        "width": 360,
+        "height": 336,
+        "avif": "assets/optimized/jeleosinmi-before-360.cb36be76ca38.avif",
+        "avifBytes": 14192,
+        "webp": "assets/optimized/jeleosinmi-before-360.5cb79991f7a2.webp",
+        "webpBytes": 15676,
+        "jpg": "assets/optimized/jeleosinmi-before-360.29d5bfd436c3.jpg",
+        "jpgBytes": 24445
+      },
+      {
+        "width": 720,
+        "height": 672,
+        "avif": "assets/optimized/jeleosinmi-before-720.abfed6fa135a.avif",
+        "avifBytes": 30033,
+        "webp": "assets/optimized/jeleosinmi-before-720.1bdec1eafefd.webp",
+        "webpBytes": 32608,
+        "jpg": "assets/optimized/jeleosinmi-before-720.d95144cf9df2.jpg",
+        "jpgBytes": 56803
+      },
+      {
+        "width": 1320,
+        "height": 1232,
+        "avif": "assets/optimized/jeleosinmi-before-1320.160d7d8dbb97.avif",
+        "avifBytes": 59796,
+        "webp": "assets/optimized/jeleosinmi-before-1320.d2a8719092a3.webp",
+        "webpBytes": 63846,
+        "jpg": "assets/optimized/jeleosinmi-before-1320.311f4c360ef4.jpg",
+        "jpgBytes": 133290
+      }
+    ]
+  },
+  "jeleosinmi-after": {
+    "original": "assets/jeleosinmi-after.png",
+    "originalBytes": 139452,
+    "originalSha256": "497a47228933246fcebe30ce9099d65f097f9f2e6486cb21cb20ebb5d1ce35c7",
+    "width": 1320,
+    "height": 863,
+    "variants": [
+      {
+        "width": 360,
+        "height": 235,
+        "avif": "assets/optimized/jeleosinmi-after-360.5df5e8819012.avif",
+        "avifBytes": 9623,
+        "webp": "assets/optimized/jeleosinmi-after-360.606d5dfab66b.webp",
+        "webpBytes": 11372,
+        "jpg": "assets/optimized/jeleosinmi-after-360.2bb2c046fc67.jpg",
+        "jpgBytes": 17360
+      },
+      {
+        "width": 720,
+        "height": 471,
+        "avif": "assets/optimized/jeleosinmi-after-720.3d3e14bbab84.avif",
+        "avifBytes": 25411,
+        "webp": "assets/optimized/jeleosinmi-after-720.74e9487f016b.webp",
+        "webpBytes": 27702,
+        "jpg": "assets/optimized/jeleosinmi-after-720.a756416d0f73.jpg",
+        "jpgBytes": 44397
+      },
+      {
+        "width": 1320,
+        "height": 863,
+        "avif": "assets/optimized/jeleosinmi-after-1320.5733d17c4826.avif",
+        "avifBytes": 47619,
+        "webp": "assets/optimized/jeleosinmi-after-1320.392473123ade.webp",
+        "webpBytes": 54386,
+        "jpg": "assets/optimized/jeleosinmi-after-1320.2208b17df330.jpg",
+        "jpgBytes": 107936
+      }
+    ]
+  },
+  "precious-tega-before": {
+    "original": "assets/precious-tega-before.png",
+    "originalBytes": 140708,
+    "originalSha256": "e94f9c0bb51f49671317b8829e1609c89439dd9c4f505daf5ae56053177b2607",
+    "width": 1320,
+    "height": 916,
+    "variants": [
+      {
+        "width": 360,
+        "height": 250,
+        "avif": "assets/optimized/precious-tega-before-360.a4a460e8c12c.avif",
+        "avifBytes": 12860,
+        "webp": "assets/optimized/precious-tega-before-360.ce464784bca8.webp",
+        "webpBytes": 14360,
+        "jpg": "assets/optimized/precious-tega-before-360.869ddda51da6.jpg",
+        "jpgBytes": 21522
+      },
+      {
+        "width": 720,
+        "height": 500,
+        "avif": "assets/optimized/precious-tega-before-720.e3d1894b1bf9.avif",
+        "avifBytes": 27674,
+        "webp": "assets/optimized/precious-tega-before-720.f3f0b2162b86.webp",
+        "webpBytes": 30956,
+        "jpg": "assets/optimized/precious-tega-before-720.fd68d7a39326.jpg",
+        "jpgBytes": 49418
+      },
+      {
+        "width": 1320,
+        "height": 916,
+        "avif": "assets/optimized/precious-tega-before-1320.9752cc0c2927.avif",
+        "avifBytes": 51604,
+        "webp": "assets/optimized/precious-tega-before-1320.da537ce8f204.webp",
+        "webpBytes": 57994,
+        "jpg": "assets/optimized/precious-tega-before-1320.6bd10db33142.jpg",
+        "jpgBytes": 116591
+      }
+    ]
+  },
+  "precious-tega-after": {
+    "original": "assets/precious-tega-after.png",
+    "originalBytes": 174569,
+    "originalSha256": "f22033238c53c21182e39aab5aae34955606a7f99b7a358eb765875612165275",
+    "width": 1320,
+    "height": 810,
+    "variants": [
+      {
+        "width": 360,
+        "height": 221,
+        "avif": "assets/optimized/precious-tega-after-360.85ab36ba4f91.avif",
+        "avifBytes": 11734,
+        "webp": "assets/optimized/precious-tega-after-360.a2b5b7b16714.webp",
+        "webpBytes": 15016,
+        "jpg": "assets/optimized/precious-tega-after-360.b95bab7515bf.jpg",
+        "jpgBytes": 22213
+      },
+      {
+        "width": 720,
+        "height": 442,
+        "avif": "assets/optimized/precious-tega-after-720.f064247214c8.avif",
+        "avifBytes": 29069,
+        "webp": "assets/optimized/precious-tega-after-720.5e8fec4c1ace.webp",
+        "webpBytes": 36916,
+        "jpg": "assets/optimized/precious-tega-after-720.55661cdb9298.jpg",
+        "jpgBytes": 58474
+      },
+      {
+        "width": 1320,
+        "height": 810,
+        "avif": "assets/optimized/precious-tega-after-1320.d3b731356b70.avif",
+        "avifBytes": 63218,
+        "webp": "assets/optimized/precious-tega-after-1320.80994d5445e6.webp",
+        "webpBytes": 73814,
+        "jpg": "assets/optimized/precious-tega-after-1320.6513576d5e5e.jpg",
+        "jpgBytes": 139895
+      }
+    ]
+  },
+  "precious-tega-portrait": {
+    "original": "assets/precious-tega-portrait.png",
+    "originalBytes": 924617,
+    "originalSha256": "559cffc0a030f9106008d3ecb62ef7b7c449e2988e7ec81458a278838dca30cb",
+    "width": 982,
+    "height": 944,
+    "variants": [
+      {
+        "width": 360,
+        "height": 346,
+        "avif": "assets/optimized/precious-tega-portrait-360.58e892442728.avif",
+        "avifBytes": 14280,
+        "webp": "assets/optimized/precious-tega-portrait-360.834ad74f4b37.webp",
+        "webpBytes": 11618,
+        "jpg": "assets/optimized/precious-tega-portrait-360.cad55074e013.jpg",
+        "jpgBytes": 23555
+      },
+      {
+        "width": 720,
+        "height": 692,
+        "avif": "assets/optimized/precious-tega-portrait-720.c5b3708e77d2.avif",
+        "avifBytes": 32350,
+        "webp": "assets/optimized/precious-tega-portrait-720.b17246d611c7.webp",
+        "webpBytes": 29168,
+        "jpg": "assets/optimized/precious-tega-portrait-720.d648afccab99.jpg",
+        "jpgBytes": 64254
+      },
+      {
+        "width": 982,
+        "height": 944,
+        "avif": "assets/optimized/precious-tega-portrait-982.e82487c5328a.avif",
+        "avifBytes": 47739,
+        "webp": "assets/optimized/precious-tega-portrait-982.355567b7c888.webp",
+        "webpBytes": 44292,
+        "jpg": "assets/optimized/precious-tega-portrait-982.4238d157eaec.jpg",
+        "jpgBytes": 100757
+      }
+    ]
+  }
+}

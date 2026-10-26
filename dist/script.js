@@ -10,62 +10,40 @@ function element(tag, className, text) {
   if (text) node.textContent = text;
   return node;
 }
-function icon(name) {
-  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svg.classList.add('icon');
-  svg.setAttribute('aria-hidden', 'true');
-  const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-  use.setAttribute('href', `#icon-${name}`);
-  svg.append(use);
-  return svg;
-}
-function visual(item, fullSize = false) {
+function visual(item) {
   if (!item.src) return element('p', 'image-unavailable', 'Image unavailable.');
-  const image = element('img', fullSize ? 'viewer-image' : 'evidence-image');
+  const image = element('img', 'viewer-image');
   image.src = item.src;
   image.alt = item.alt || item.title;
   if (Number.isFinite(item.width) && Number.isFinite(item.height) && item.width > 0 && item.height > 0) {
     image.width = item.width;
     image.height = item.height;
   }
-  image.loading = fullSize ? 'eager' : 'lazy';
+  image.loading = 'eager';
   image.decoding = 'async';
   image.addEventListener('error', () => {
     image.replaceWith(element('p', 'image-unavailable', 'This image could not be loaded.'));
   }, { once: true });
   return image;
 }
-function makeCard(item, collection, compact = false) {
-  const card = element('button', `${compact ? 'hero-proof-card' : 'evidence-card'} has-image`);
-  card.type = 'button';
-  card.dataset.evidenceId = item.id;
-  card.setAttribute('aria-label', `View ${item.title}`);
-  card.setAttribute('aria-haspopup', 'dialog');
-  const caption = element('div', 'evidence-card-caption');
-  caption.append(element('span', '', item.title), icon('arrow'));
-  card.append(visual(item), caption);
-  card.addEventListener('click', () => openViewer(item, collection.filter(entry => entry.src)));
-  return card;
-}
 // Full-size viewing is optional; the before/after pairs are always visible in the page.
-document.querySelectorAll('[data-growth-image]').forEach(link => {
-  const item = evidence.find(entry => entry.id === link.dataset.growthImage && entry.category === 'growth' && entry.src);
+const heroItems = evidence.filter(item => item.src && item.group === 'results' && item.label === 'AFTER').slice(0, 3);
+document.querySelectorAll('[data-growth-image], [data-hero-proof]').forEach(link => {
+  const item = evidence.find(entry => entry.id === (link.dataset.growthImage || link.dataset.heroProof) && entry.category === 'growth' && entry.src);
   if (!item) return;
-  const pair = evidence.filter(entry => entry.category === 'growth' && entry.pairId === item.pairId && entry.src);
+  const collection = link.hasAttribute('data-hero-proof') ? heroItems : evidence.filter(entry => entry.category === 'growth' && entry.pairId === item.pairId && entry.src);
   link.setAttribute('aria-haspopup', 'dialog');
   link.addEventListener('click', event => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     link.focus({ preventScroll: true });
-    openViewer(item, pair);
+    openViewer(item, collection);
   });
 });
-const heroItems = evidence.filter(item => item.src && item.group === 'results' && item.label === 'AFTER').slice(0, 3);
-document.querySelector('#hero-proof').replaceChildren(...heroItems.map(item => makeCard(item, heroItems, true)));
 
 function renderViewer() {
   const item = currentItems[currentIndex];
-  document.querySelector('#viewer-stage').replaceChildren(visual(item, true));
+  document.querySelector('#viewer-stage').replaceChildren(visual(item));
   document.querySelector('#evidence-title').textContent = item.title;
   const description = document.querySelector('#evidence-description');
   description.textContent = item.description || '';
@@ -221,9 +199,13 @@ ribbonViewport.addEventListener('keydown', event => {
   event.preventDefault();
   toggleRibbonPause();
 });
-const ribbonResizeObserver = new ResizeObserver(updateRibbon);
-ribbonResizeObserver.observe(ribbon);
-ribbonResizeObserver.observe(ribbonGroup);
+if ('ResizeObserver' in window) {
+  const ribbonResizeObserver = new ResizeObserver(updateRibbon);
+  ribbonResizeObserver.observe(ribbon);
+  ribbonResizeObserver.observe(ribbonGroup);
+} else {
+  window.addEventListener('resize', updateRibbon, { passive: true });
+}
 reducedMotion.addEventListener('change', updateRibbon);
 updateRibbon();
 
@@ -264,29 +246,62 @@ const checkoutPanel = document.querySelector('.course-offer');
 const finalCta = document.querySelector('.next [data-purchase]');
 const pageFooter = document.querySelector('footer');
 let scrollFrame = 0;
+let heroAhead = true;
+let barHeight = 0;
+let measureBar = true;
+const checkoutVisibility = new Map([[checkoutPanel, false], [finalCta, false], [pageFooter, false]]);
+const observesVisibility = 'IntersectionObserver' in window;
 function inViewport(node) {
   const box = node.getBoundingClientRect();
   return box.top < window.innerHeight && box.bottom > 0;
 }
 function updateScrollControls() {
   scrollFrame = 0;
-  backToTop.hidden = window.scrollY < 400;
+  const hideBackToTop = window.scrollY < 400;
+  if (backToTop.hidden !== hideBackToTop) backToTop.hidden = hideBackToTop;
   const focused = stickyEnrol.contains(document.activeElement);
-  stickyEnrol.hidden = !focused && (hero.getBoundingClientRect().bottom > 0 || inViewport(checkoutPanel) || inViewport(finalCta) || inViewport(pageFooter));
-  if (!stickyEnrol.hidden) {
-    document.body.style.setProperty('--enrolment-bar-height', `${Math.ceil(stickyEnrol.getBoundingClientRect().height)}px`);
+  const hideBar = !focused && (observesVisibility
+    ? heroAhead || Array.from(checkoutVisibility.values()).some(Boolean)
+    : hero.getBoundingClientRect().bottom > 0 || inViewport(checkoutPanel) || inViewport(finalCta) || inViewport(pageFooter));
+  const visibilityChanged = stickyEnrol.hidden !== hideBar;
+  if (visibilityChanged) {
+    stickyEnrol.hidden = hideBar;
+    document.body.classList.toggle('has-sticky-enrol', !hideBar);
   }
-  document.body.classList.toggle('has-sticky-enrol', !stickyEnrol.hidden);
+  if (!hideBar && (visibilityChanged || measureBar)) {
+    const height = Math.ceil(stickyEnrol.getBoundingClientRect().height);
+    if (height !== barHeight) {
+      barHeight = height;
+      document.body.style.setProperty('--enrolment-bar-height', `${height}px`);
+    }
+    measureBar = false;
+  }
 }
 function scheduleScrollControls() {
   if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScrollControls);
 }
 window.addEventListener('scroll', scheduleScrollControls, { passive: true });
-window.addEventListener('resize', scheduleScrollControls, { passive: true });
-const scrollResizeObserver = new ResizeObserver(scheduleScrollControls);
-scrollResizeObserver.observe(document.querySelector('main'));
-scrollResizeObserver.observe(stickyEnrol);
-scrollResizeObserver.observe(pageFooter);
+window.addEventListener('resize', () => {
+  measureBar = true;
+  scheduleScrollControls();
+}, { passive: true });
+if (observesVisibility) {
+  const controlObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.target === hero) heroAhead = entry.boundingClientRect.bottom > 0;
+      else checkoutVisibility.set(entry.target, entry.isIntersecting);
+    });
+    scheduleScrollControls();
+  });
+  [hero, ...checkoutVisibility.keys()].forEach(node => controlObserver.observe(node));
+}
+if ('ResizeObserver' in window) {
+  const barResizeObserver = new ResizeObserver(() => {
+    measureBar = true;
+    scheduleScrollControls();
+  });
+  barResizeObserver.observe(stickyEnrol);
+}
 stickyEnrol.addEventListener('focusout', scheduleScrollControls);
 updateScrollControls();
 backToTop.addEventListener('click', () => {

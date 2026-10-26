@@ -20,6 +20,7 @@ The deployed `.htaccess` replaces a file of the same name. If hosting-specific d
 ## Search launch checks
 
 - Verify root HTML returns HTTP 200, CSS/JS load, `/site/` redirects once to root, and HTTPS works.
+- Verify text compression, revalidated HTML, and long-lived caching of versioned assets. Confirm AVIF/WebP/WOFF2 content types and responsive image loading; see `PERFORMANCE.md` for the local measurements and deployment checks.
 - Check that the deployed `/robots.txt` references the sitemap and that hosting HTTP headers do not set `noindex`.
 - Verify site ownership in Google Search Console, submit `/sitemap.xml`, and inspect/request indexing of the root URL. Search Console access is required; none of these account actions have been completed by this repository change.
 - Run PageSpeed Insights, mobile/keyboard checks, and the Schema Markup Validator against the deployed URL. Course markup describes the course; it does not guarantee a Google rich result.
