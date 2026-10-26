@@ -1,6 +1,6 @@
 # Loading and interaction performance
 
-The static site keeps the approved layout, PDF wording, before/after comparisons, original evidence viewer, and accessibility controls. Its initial rendering no longer depends on a Google Fonts stylesheet or JavaScript-generated hero images.
+The static site keeps the approved layout, PDF wording below the hero, before/after comparisons, original evidence viewer, and accessibility controls. The shorter hero uses the client's latest supplied headline and description. Its initial rendering no longer depends on a Google Fonts stylesheet or JavaScript-generated hero images. The top price notice reuses the existing transform animation and pause/reduced-motion controls.
 
 ## Image delivery
 
@@ -32,7 +32,7 @@ Font binaries are sourced from `fontsource/font-files`. Their pinned Git blob ID
 
 ## Verification
 
-Local checks cover JavaScript syntax, all 80 approved PDF passages, unchanged client originals and preserved PDF-layout files, all 63 decoded image variants, resource hashes/paths, source widths, deferred script order, static hero images, image viewer collections, Selar routing, ribbon keyboard/reduced-motion controls, and the enrolment bar's visibility/focus/resize behavior. Apache configuration syntax passes with the relevant modules loaded. A simulated 100 repeated scroll updates performs no new element measurements or repeated body-style writes after the bar's initial measurement.
+Local checks cover JavaScript syntax, the original approved PDF passages (with the newer hero copy checked separately), unchanged client originals and preserved PDF-layout files, all 63 decoded image variants, resource hashes/paths, source widths, deferred script order, static hero images, image viewer collections, Selar routing, ribbon keyboard/reduced-motion controls, and the enrolment bar's visibility/focus/resize behavior. Apache configuration syntax passes with the relevant modules loaded. A simulated 100 repeated scroll updates performs no new element measurements or repeated body-style writes after the bar's initial measurement.
 
 Browser rendering and throttled mobile/desktop network measurements are unavailable in this execution environment. After deploying the entire `dist/` directory, verify response `Content-Encoding`, `Cache-Control`, font/image MIME types, and resource loading in browser developer tools. Run PageSpeed Insights and check real mobile Safari/Chrome, desktop browsers, keyboard navigation, and reduced motion. No live Lighthouse score, universal device compatibility, or fixed load-time guarantee is claimed.
 

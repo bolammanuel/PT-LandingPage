@@ -1,6 +1,6 @@
 # Precious Tega — Original Template with Client Content
 
-The active page uses the original pre-PDF template from commit `8e5670d`, populated with the client's **The Complete Social Media Management Blueprint** copy. Its original section order, two-column hero, overlapping proof images, evidence area with dedicated before/after comparisons, explanation columns, lesson accordion, instructor layout, four completed disclosures, and closing course-offer card are retained.
+The active page uses the original pre-PDF template from commit `8e5670d`, populated with the client's **The Complete Social Media Management Blueprint** copy. Its original section order, two-column hero, overlapping proof images, evidence area with dedicated before/after comparisons, explanation columns, lesson accordion, instructor layout, four completed disclosures, and closing course-offer card are retained. The hero now uses the client's newer “The High income skill…” headline and supplied description, with centered copy/actions on mobile. A moving price-increase notice sits above the navigation.
 
 The original template’s appearance is retained, with source cleanup for the completed portrait. The appended rules support already-approved controls: equal-sized wordmarks, accessible vector ornaments, accessible pause/resume on the moving ribbon itself, keyboard-visible/reduced-motion content, the scrolling enrolment bar, and supplied media. The main section order remains the original template. The requested comparison subsection and wider closing offer are scoped changes within those sections; the active version does not use the separate thirteen-section PDF layout.
 
@@ -35,11 +35,11 @@ See [PERFORMANCE.md](PERFORMANCE.md) for measured image reductions, compression/
 
 ## Content placement
 
-The PDF supplies the wording, and the original template supplies the presentation.
+The PDF supplies the wording below the hero, and the original template supplies the presentation. The client's latest supplied hero copy replaces the longer PDF introduction.
 
 | Original template area | PDF content |
 | --- | --- |
-| Two-column hero | Course name, supplied hook, introduction, access CTA, and preview images |
+| Two-column hero | Latest supplied headline and description, access CTA, and preview images; text and controls center on mobile |
 | Evidence section | A dedicated before/after page-growth comparison and the supplied evidence copy |
 | Explanation columns | The supplied “You may be making this harder than it needs to be” copy |
 | Existing course accordion | All eleven lesson titles and descriptions, plus the supplied course CTA |
@@ -59,7 +59,7 @@ The observed pairs are Helejené Homes, Jeleosinmi, and Precious Tega's own Inst
 
 The confirmed price is `20000` in `NGN`. Supply the actual HTTPS Selar product URL in `course-config.js` when available. Until then, all enrolment controls open the official Selar homepage in a new tab. Once `selarUrl` is supplied, that one setting updates every enrolment control. The closing offer card keeps one purchase button. There is no discount, deadline, or hidden countdown in the review build. The unused contact/registration popup has also been removed; all enrolment buttons lead directly to Selar.
 
-Keep the skip link, visible focus, native dialogs and disclosures, focus restoration, keyboard navigation, readable text, 44px controls, and reduced-motion support. The ribbon has no separate Pause button. Clicking the strip, or pressing Enter/Space when it is focused, persistently pauses/resumes motion; hover pause and reduced-motion support remain. Its position remains the same as in the original template. The previously requested bottom pricing bar appears after the hero and yields to the closing course offer and footer. Bottom clearance is reserved only while the bar is visible; footer padding stays compact, with inline clearance for the floating back-to-top control. The closing card is capped at 960px on desktop, with fluid mobile width, and its introductory copy uses a wider reading measure. These implementation details do not establish full WCAG conformance; browser, screen-reader, reflow, and zoom checks are still required before launch.
+Keep the skip link, visible focus, native dialogs and disclosures, focus restoration, keyboard navigation, readable text, 44px controls, and reduced-motion support. The moving strip above the navigation displays “₦20,000 NOW · PRICE INCREASES SOON”, replacing the highlights strip below the hero. ₦20,000 remains the current price; no future amount or deadline has been supplied. It has no separate Pause button. Clicking the strip, or pressing Enter/Space when it is focused, persistently pauses/resumes motion; hover pause and reduced-motion support remain. Repeated visual messages receive one accessible label. Reduced motion presents one static message. The previously requested bottom pricing bar appears after the hero and yields to the closing course offer and footer. Bottom clearance is reserved only while the bar is visible; footer padding stays compact, with inline clearance for the floating back-to-top control. The closing card is capped at 960px on desktop, with fluid mobile width, and its introductory copy uses a wider reading measure. These implementation details do not establish full WCAG conformance; browser, screen-reader, reflow, and zoom checks are still required before launch.
 
 ```bash
 node --check dist/script.js

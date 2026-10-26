@@ -160,7 +160,7 @@ const ribbonViewport = ribbon.querySelector('.ribbon-viewport');
 const ribbonTrack = ribbon.querySelector('.ribbon-track');
 const ribbonGroup = ribbon.querySelector('.ribbon-group');
 const ribbonHelp = document.querySelector('#ribbon-motion-help');
-const ribbonLabels = Array.from(ribbonGroup.querySelectorAll('span'), label => label.textContent.trim()).join('. ');
+const ribbonLabels = [...new Set(Array.from(ribbonGroup.querySelectorAll('span'), label => label.textContent.trim()))].join('. ');
 const ribbonCopy = ribbonGroup.cloneNode(true);
 ribbonCopy.setAttribute('aria-hidden', 'true');
 ribbonTrack.append(ribbonCopy);
@@ -179,7 +179,7 @@ function updateRibbon() {
   ribbon.classList.toggle('is-scrolling', moving);
   ribbonViewport.setAttribute('role', moving ? 'button' : 'region');
   ribbonViewport.setAttribute('aria-label', ribbonLabels);
-  ribbonHelp.textContent = moving ? 'Click or press Enter or Space to pause or resume scrolling.' : 'Use the arrow keys to read all course highlights.';
+  ribbonHelp.textContent = moving ? 'Click or press Enter or Space to pause or resume scrolling.' : 'Price announcement. Motion is turned off.';
   if (!moving) {
     ribbonViewport.removeAttribute('aria-pressed');
     ribbonViewport.removeAttribute('title');

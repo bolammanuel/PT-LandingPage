@@ -236,3 +236,36 @@ footer.wrap{padding-top:24px;padding-bottom:calc(24px + env(safe-area-inset-bott
 
 /* Picture wrappers preserve the original image boxes and reserved dimensions. */
 .hero-proof-card picture,.growth-image-link picture,.mentor-portrait picture{display:block;width:100%}
+
+/* Return to the original short hero, with centered copy and controls on mobile. */
+.hero.hero-simple h1{font-size:clamp(2.5rem,3.9vw,3.5rem);line-height:1.15;max-width:23ch;margin-bottom:24px}
+.hero.hero-simple .intro{font-size:1.125rem;line-height:1.75;max-width:52ch;margin-bottom:0}
+.hero.hero-simple .hero-actions{margin-top:28px}
+@media(max-width:60rem){
+  .hero.hero-simple .hero-copy{text-align:center}
+  .hero.hero-simple h1{max-width:24ch;margin-inline:auto;font-size:clamp(2rem,5.4vw,3.25rem)}
+  .hero.hero-simple .intro{margin-inline:auto}
+  .hero.hero-simple .hero-actions{justify-content:center}
+  .hero.hero-simple .hero-evidence h2{text-align:center}
+  .hero.hero-simple .hero-proof-link{justify-content:center;gap:12px}
+}
+@media(max-width:40rem){
+  .hero.hero-simple h1{font-size:clamp(2rem,7.5vw,2.75rem)}
+  .hero.hero-simple .intro{font-size:1rem;line-height:1.75}
+  .hero.hero-simple .hero-actions{align-items:center}
+  .hero.hero-simple .hero-actions .button{width:100%;max-width:22rem}
+  .hero.hero-simple .hero-actions .text-link{align-self:center}
+}
+
+/* A compact, continuous price notice above the navigation. */
+.price-announcement{min-height:48px;padding:2px 16px;background:var(--accent);border-color:var(--accent);color:#fff;font-size:.875rem;letter-spacing:.08em}
+.price-announcement .ribbon-group span{font-weight:600}
+.price-announcement .ribbon-group i{color:inherit;font-size:1rem}
+.price-announcement .ribbon-viewport:focus-visible{outline:3px solid #fff;outline-offset:-3px}
+@media(prefers-reduced-motion:reduce){
+  .price-announcement .ribbon-viewport{overflow:visible}
+  .price-announcement .ribbon-track{width:100%}
+  .price-announcement .ribbon-group:not([aria-hidden=true]){display:block;width:100%;padding-inline-end:0;text-align:center}
+  .price-announcement .ribbon-group span{white-space:normal}
+  .price-announcement .ribbon-group [aria-hidden=true]{display:none}
+}
